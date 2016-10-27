@@ -15,8 +15,9 @@
   "scripts": {
     "test": "xo<% if (ava) { %>&& ava<% } %>"
   },
+  "main": "lib/index.js",
   "files": [
-    "index.js"
+    "lib"
   ],
   "keywords": [
     ""
