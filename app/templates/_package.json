@@ -13,6 +13,7 @@
 		"node": ">=4"
 	},
 	"scripts": {
+		"start": "browser-sync start --server 'example' --files 'example'",
 		"test": "xo<% if (ava) { %>&& ava<% } %>"
 	},
 	"main": "lib/index.js",
@@ -29,6 +30,7 @@
 	},
 	"devDependencies": {<% if (ava) { %>
 		"ava": "^0.15.2",<% } %>
+		"browser-sync": "^2.17.5",
 		"xo": "^0.16.0"
 	},
 	"xo": {
