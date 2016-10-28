@@ -22,7 +22,9 @@
   "keywords": [
     ""
   ],
-  "dependencies": {},
+  "dependencies": {
+  	"d3": "^4.3.0"
+  },
   "devDependencies": {<% if (ava) { %>
     "ava": "^0.15.2",<% } %>
     "xo": "^0.16.0"
