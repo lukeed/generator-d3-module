@@ -1,35 +1,37 @@
 {
-  "name": "<%= moduleName %>",
-  "version": "0.0.0",
-  "description": "<%= moduleDescription %>",
-  "license": "MIT",
-  "repository": "<%= githubUsername %>/<%= repoName %>",
-  "author": {
-    "name": "<%= name %>",
-    "email": "<%= email %>",
-    "url": "<%= humanizedWebsite %>"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo<% if (ava) { %>&& ava<% } %>"
-  },
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
-  "keywords": [
-    ""
-  ],
-  "dependencies": {
-  	"d3": "^4.3.0"
-  },
-  "devDependencies": {<% if (ava) { %>
-    "ava": "^0.15.2",<% } %>
-    "xo": "^0.16.0"
-  },
-  "xo": {
-    "esnext": true
-  }
+	"name": "<%= moduleName %>",
+	"version": "0.0.0",
+	"description": "<%= moduleDescription %>",
+	"license": "MIT",
+	"repository": "<%= githubUsername %>/<%= repoName %>",
+	"author": {
+		"name": "<%= name %>",
+		"email": "<%= email %>",
+		"url": "<%= humanizedWebsite %>"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo<% if (ava) { %>&& ava<% } %>"
+	},
+	"main": "lib/index.js",
+	"files": [
+		"lib"
+	],
+	"keywords": [
+		"d3",
+		"d3.js",
+		"chart"
+	],
+	"dependencies": {
+		"d3": "^4.3.0"
+	},
+	"devDependencies": {<% if (ava) { %>
+		"ava": "^0.15.2",<% } %>
+		"xo": "^0.16.0"
+	},
+	"xo": {
+		"esnext": true
+	}
 }
