@@ -13,8 +13,9 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"build": "browserify lib/index.js > example/bundle.js",
-		"start": "browser-sync start --server 'example' --files 'example'",
+		"build": "browserify example/app.js > example/demo.js",
+		"prestart": "npm run build",
+		"start": "browser-sync start --server 'example' --files 'example' --port 4000",
 		"test": "xo<% if (ava) { %>&& ava<% } %>",
 		"watch": "node watcher"
 	},
