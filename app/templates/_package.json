@@ -13,7 +13,7 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"build": "browserify docs/app.js -o docs/bundle.js<% if (esnext) { %> -t [babelify --presets [ es2015 ] ]<% } %>",
+		"build": "browserify docs/app.js -o docs/bundle.js<% if (esnext) { %> -t [ babelify --presets [ es2015 ] ]<% } %>",
 		"prestart": "npm run build",
 		"start": "browser-sync start --server 'docs' --files 'docs' --port 4000",
 		"test": "xo<% if (ava) { %>&& ava<% } %>",

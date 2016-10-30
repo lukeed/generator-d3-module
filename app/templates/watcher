@@ -23,8 +23,8 @@ const b = browserify({
 	cache: {}
 });
 <% if (esnext) { %>
-b.transform('babelify', {presets: ['es2015']});<% } %>
-
+b.transform('babelify', {presets: ['es2015']});
+<% } %>
 function bundle() {
   b.bundle().pipe(write('docs/bundle.js'));
 }
