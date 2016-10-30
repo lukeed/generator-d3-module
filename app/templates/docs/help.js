@@ -1,4 +1,13 @@
 var x = exports;
+var doc = document;
+
+x.cls = function (sel, ctx) {
+	return this.slice((ctx || doc).getElementsByClassName(sel));
+};
+
+x.qs = function (sel, ctx) {
+	return (ctx || doc).querySelector(sel);
+};
 
 x.on = function (el, events, cb) {
 	events.split(' ').forEach(function (e) {
@@ -16,3 +25,7 @@ x.gen = function (num) {
 	}
 	return data;
 };
+
+x.slice = function (list) {
+	return [].slice.call(list);
+}
