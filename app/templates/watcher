@@ -24,7 +24,7 @@ const b = browserify({
 });
 
 function bundle() {
-  b.bundle().pipe(write('docs/demo.js'));
+  b.bundle().pipe(write('docs/bundle.js'));
 }
 
 b.on('update', bundle);
