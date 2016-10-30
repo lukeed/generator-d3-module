@@ -22,6 +22,8 @@ const b = browserify({
 	packageCache: {},
 	cache: {}
 });
+<% if (esnext) { %>
+b.transform('babelify', {presets: ['es2015']});<% } %>
 
 function bundle() {
   b.bundle().pipe(write('docs/bundle.js'));

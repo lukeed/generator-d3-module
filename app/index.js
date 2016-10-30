@@ -45,6 +45,11 @@ module.exports = class extends yeoman.Base {
 			validate: x => x.length > 0 ? true : 'You have to provide a website URL',
 			filter: x => normalizeUrl(x)
 		}, {
+			name: 'esnext',
+			message: 'Write with ES2015 syntax?',
+			type: 'confirm',
+			default: true
+		}, {
 			name: 'ava',
 			message: 'Do you need a test suite?',
 			type: 'confirm',
@@ -64,6 +69,7 @@ module.exports = class extends yeoman.Base {
 				email: this.user.git.email(),
 				website: props.website,
 				humanizedWebsite: humanizeUrl(props.website),
+				esnext: props.esnext,
 				ava
 			};
 
@@ -73,8 +79,16 @@ module.exports = class extends yeoman.Base {
 
 			this.fs.copyTpl([
 				`${this.templatePath()}/**`,
+				'!**/index.*.js',
 				'!**/test.js'
 			], this.destinationPath(), tpl);
+
+			const ver = props.esnext ? 'es6' : 'es5';
+			this.fs.copyTpl(
+				this.templatePath(`lib/index.${ver}.js`),
+				this.destinationPath('lib/index.js'),
+				tpl
+			);
 
 			if (props.ava) {
 				this.fs.copyTpl(this.templatePath('test.js'), this.destinationPath('test.js'), tpl);
