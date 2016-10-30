@@ -77,21 +77,24 @@ module.exports = class extends yeoman.Base {
 				this.fs.move(this.destinationPath(from), this.destinationPath(to));
 			};
 
+			const cp = (from, to) => {
+				this.fs.copy(this.templatePath(from), this.destinationPath(to));
+			};
+
 			this.fs.copyTpl([
 				`${this.templatePath()}/**`,
 				'!**/index.*.js',
-				'!**/test.js'
+				'!**/test.js',
+				'!**/*.jpg'
 			], this.destinationPath(), tpl);
 
+			cp('docs/bg.jpg', 'docs/bg.jpg');
+
 			const ver = props.esnext ? 'es6' : 'es5';
-			this.fs.copyTpl(
-				this.templatePath(`lib/index.${ver}.js`),
-				this.destinationPath('lib/index.js'),
-				tpl
-			);
+			cp(`lib/index.${ver}.js`, 'lib/index.js');
 
 			if (props.ava) {
-				this.fs.copyTpl(this.templatePath('test.js'), this.destinationPath('test.js'), tpl);
+				cp('test.js', 'test.js');
 			}
 
 			mv('editorconfig', '.editorconfig');
