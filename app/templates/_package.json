@@ -13,12 +13,13 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"build": "browserify docs/app.js -o docs/bundle.js<% if (esnext) { %> -t [ babelify --presets [ es2015 ] ]<% } %>",
-		"prestart": "npm run build",
-		"start": "browser-sync start --server 'docs' --files 'docs' --port 4000",
-		"test": "xo<% if (ava) { %>&& ava<% } %>",
-		"watch": "node watcher"
-	},
+    "setup": "fly setup",
+    "build": "<% if (esnext) { %>BABEL=1 <% } %>fly build",
+    "release": "<% if (esnext) { %>BABEL=1 <% } %>fly release",
+    "start": "<% if (esnext) { %>BABEL=1 <% } %>fly release serve",
+    "watch": "<% if (esnext) { %>BABEL=1 <% } %>fly watch"
+    "test": "xo<% if (ava) { %>&& ava<% } %>"
+  },
 	"main": "lib/index.js",
 	"files": [
 		"lib"
@@ -32,17 +33,15 @@
 		"d3": "^4.3.0",
 		"object-assign": "^4.1.0"
 	},
-	"devDependencies": {<% if (ava) { %>
-		"ava": "^0.15.2",<% } %>
-		"browser-sync": "^2.17.5",
-		"browserify": "^13.1.1",<% if (esnext) { %>
-		"babel-preset-es2015": "^6.18.0",
-		"babelify": "^7.3.0",<% } %>
-		"watchify": "^3.7.0",
-		"xo": "^0.16.0"
-	},
-	"xo": {
-		"ignores": ["docs/bundle.js"],
-		"envs": ["browser"]
-	}
+  "devDependencies": {<% if (ava) { %>
+    "ava": "^0.15.2",<% } %>
+    "browser-module-env": "^0.0.4",
+    "xo": "^0.16.0"
+  },
+  "fly": {
+    "pkg": "node_modules/browser-module-env"
+  },
+  "xo": {
+    "envs": ["browser"]
+  }
 }

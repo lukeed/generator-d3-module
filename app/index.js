@@ -6,8 +6,6 @@ const yeoman = require('yeoman-generator');
 const _s = require('underscore.string');
 const moduleName = require('./module-name');
 
-const UND = undefined;
-
 module.exports = class extends yeoman.Base {
 	constructor(a, b) {
 		super(a, b);
@@ -53,8 +51,8 @@ module.exports = class extends yeoman.Base {
 			name: 'ava',
 			message: 'Do you need a test suite?',
 			type: 'confirm',
-			default: Boolean(this.options.coveralls || this.options.coverage),
-			when: () => (this.options['skip-tests'] === UND)
+			default: true,
+			when: () => (this.options['skip-tests'] === undefined)
 		}]).then(props => {
 			const ava = props['ava' || 'skip-tests'] || this.options['skip-tests'];
 			const repoName = moduleName.repoName(props.moduleName);
@@ -84,11 +82,8 @@ module.exports = class extends yeoman.Base {
 			this.fs.copyTpl([
 				`${this.templatePath()}/**`,
 				'!**/index.*.js',
-				'!**/test.js',
-				'!**/*.jpg'
+				'!**/test.js'
 			], this.destinationPath(), tpl);
-
-			cp('docs/bg.jpg', 'docs/bg.jpg');
 
 			const ver = props.esnext ? 'es6' : 'es5';
 			cp(`lib/index.${ver}.js`, 'lib/index.js');
