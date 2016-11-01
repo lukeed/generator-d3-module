@@ -1,6 +1,6 @@
 {
   "name": "generator-d3-module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Scaffold out a D3.js module",
   "license": "MIT",
   "repository": "lukeed/generator-d3-module",
