@@ -9,7 +9,7 @@ let generator;
 
 test.beforeEach(async () => {
 	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
-	generator = helpers.createGenerator('d3-module:app', ['../app'], null, {skipInstall: true});
+	generator = helpers.createGenerator('browser-module:app', ['../app'], null, {skipInstall: true});
 });
 
 test.serial('generates expected files', async () => {
@@ -29,13 +29,11 @@ test.serial('generates expected files', async () => {
 		'.travis.yml',
 		'lib/index.js',
 		'docs/index.html',
-		'docs/demo.css',
-		'docs/help.js',
 		'docs/app.js',
-		'license',
 		'package.json',
 		'readme.md',
-		'watcher'
+		'license',
+		'test.js'
 	]);
 });
 
@@ -70,4 +68,17 @@ test.serial('defaults to superb description', async () => {
 
 	assert.fileContent('package.json', /"description": "My .+ module",/);
 	assert.fileContent('readme.md', /> My .+ module/);
+});
+
+test.serial('disregard test suite', async () => {
+	helpers.mockPrompt(generator, {
+		moduleName: 'test',
+		githubUsername: 'test',
+		website: 'test.com',
+		ava: false
+	});
+
+	await pify(generator.run.bind(generator))();
+
+	assert.noFile('test.js');
 });
