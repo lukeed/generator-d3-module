@@ -9,7 +9,7 @@ let generator;
 
 test.beforeEach(async () => {
 	await pify(helpers.testDirectory)(path.join(__dirname, 'temp'));
-	generator = helpers.createGenerator('browser-module:app', ['../app'], null, {skipInstall: true});
+	generator = helpers.createGenerator('d3-module:app', ['../app'], null, {skipInstall: true});
 });
 
 test.serial('generates expected files', async () => {
@@ -28,8 +28,10 @@ test.serial('generates expected files', async () => {
 		'.gitignore',
 		'.travis.yml',
 		'lib/index.js',
+		'lib/config.js',
 		'docs/index.html',
 		'docs/app.js',
+		'docs/help.js',
 		'package.json',
 		'readme.md',
 		'license',
