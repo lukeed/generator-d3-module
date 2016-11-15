@@ -15,14 +15,17 @@
 	"scripts": {
     "setup": "fly setup",
     "build": "<% if (esnext) { %>BABEL=1 <% } %>fly build",
+    "docs": "<% if (esnext) { %>BABEL=1 <% } %>fly docs",
     "release": "<% if (esnext) { %>BABEL=1 <% } %>fly release",
     "start": "<% if (esnext) { %>BABEL=1 <% } %>fly release serve",
-    "watch": "<% if (esnext) { %>BABEL=1 <% } %>fly watch"
-    "test": "xo<% if (ava) { %>&& ava<% } %>"
+    "watch": "<% if (esnext) { %>BABEL=1 <% } %>fly watch",
+    "test": "xo<% if (ava) { %> && ava<% } %>"
   },
-	"main": "lib/index.js",
+  "main": "lib/index.js",
+	"browser": "build/<%= moduleName %>.js",
 	"files": [
-		"lib"
+		"lib",
+    "build"
 	],
 	"keywords": [
 		"d3",
@@ -35,13 +38,19 @@
 	},
   "devDependencies": {<% if (ava) { %>
     "ava": "^0.15.2",<% } %>
-    "browser-module-env": "^0.0.4",
+    "browser-module-env": "^0.1.3",
     "xo": "^0.16.0"
   },
   "fly": {
     "pkg": "node_modules/browser-module-env"
   },
   "xo": {
-    "envs": ["browser"]
+    "envs": [
+      "browser"
+    ],
+    "ignores": [
+      "docs/**",
+      "build/**"
+    ]
   }
 }

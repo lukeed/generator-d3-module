@@ -33,6 +33,7 @@ test.serial('generates expected files', async () => {
 		'docs/app.js',
 		'docs/help.js',
 		'package.json',
+		'flyfile.js',
 		'readme.md',
 		'license',
 		'test.js'
